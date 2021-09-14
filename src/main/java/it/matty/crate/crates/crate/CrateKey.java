@@ -3,6 +3,7 @@ package it.matty.crate.crates.crate;
 import it.matty.crate.crates.rewards.Reward;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashSet;
@@ -22,5 +23,10 @@ public class CrateKey implements Crate {
     @Override
     public void removeItem(Reward item) {
         this.items.remove(item);
+    }
+
+    @Override
+    public void open(Player player) {
+
     }
 }
