@@ -3,3 +3,7 @@ database:
   hostname: //
   username: //
   password: //
+
+settings:
+  crate-per-day: 10
+  crate-delay: 10 #seconds

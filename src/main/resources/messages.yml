@@ -1,4 +1,16 @@
 messages:
-  help:
-    - ""
-    - ""
+  commands:
+    help:
+      - ''
+      - '&3&l»&b&l» &fList of &bavailable &fsubcommands:'
+      - '&b&l» &f/crates list &8• &7List of available crates.'
+      - '&3&l» &f/crates create <crate> &8• &7Create a crate.'
+      - '&b&l» &f/crates delete <crate> &8• &7Delete a create.'
+      - '&3&l» &f/crates edit <crate> &8• &7Edit a crate.'
+      - '&b&l» &f/crates give <player> <crate> [amount] &8• &7Give creates to a user.'
+      - '&b&l» &f/crates reload &8• &7Reload message config.'
+      - ''
+  list:
+    message: '&b[Crate List] &7Here is the list of &favailable crates:'
+    format: '&3&l» &f%crate_name%'
+  reload: '&b[Reload] &7The message config was &freloaded successfully.'

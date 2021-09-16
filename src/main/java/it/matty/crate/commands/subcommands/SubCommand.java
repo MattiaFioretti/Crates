@@ -6,5 +6,4 @@ import lombok.Getter;
 @AllArgsConstructor @Getter
 public abstract class SubCommand implements ISubCommand {
     private final String subcommand;
-    private final int args;
 }

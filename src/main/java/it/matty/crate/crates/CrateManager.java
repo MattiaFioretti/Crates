@@ -1,6 +1,6 @@
 package it.matty.crate.crates;
 
-import it.matty.crate.crates.crate.Crate;
+import it.matty.crate.crates.cratekey.Crate;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 

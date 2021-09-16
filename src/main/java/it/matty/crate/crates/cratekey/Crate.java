@@ -1,4 +1,4 @@
-package it.matty.crate.crates.crate;
+package it.matty.crate.crates.cratekey;
 
 import it.matty.crate.crates.rewards.Reward;
 import org.bukkit.entity.Player;

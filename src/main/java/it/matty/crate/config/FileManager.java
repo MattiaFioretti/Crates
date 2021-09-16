@@ -14,6 +14,7 @@ public class FileManager implements IFIleManager {
 
     public FileManager() {
         addFile(new ConfigFile(CratePlugin.getPlugin(), "crates"));
+        addFile(new ConfigFile(CratePlugin.getPlugin(), "messages"));
     }
 
     @Override

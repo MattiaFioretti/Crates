@@ -2,7 +2,8 @@ package it.matty.crate.commands;
 
 import it.matty.crate.CratePlugin;
 import it.matty.crate.commands.subcommands.ListCommand;
-import it.matty.crate.utils.Utils;
+import it.matty.crate.commands.subcommands.ReloadCommand;
+import it.matty.crate.messages.Message;
 import org.bukkit.command.CommandSender;
 
 public class CrateCommand extends CommandFramework {
@@ -13,11 +14,12 @@ public class CrateCommand extends CommandFramework {
 
     @Override
     public void registerSubcommands() {
-        getSubCommands().add(new ListCommand("list", 1));
+        getSubCommands().add(new ListCommand("list"));
+        getSubCommands().add(new ReloadCommand("reload"));
     }
 
     @Override
     public void execute(CommandSender sender) {
-        sender.sendMessage(Utils.textColor(""));
+        Message.HELP_MESSAGE.send(sender);
     }
 }
