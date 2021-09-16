@@ -26,13 +26,13 @@ public class UserManager implements IUserManager {
     @Override
     public boolean canOpen(Player player) {
         if(player.hasPermission("crates.bypass")) return false;
-        return getUser(player).getCrates() < CRATE_PER_DAY;
+        return getUser(player).getCrates() >= CRATE_PER_DAY;
     }
 
     @Override
     public boolean isDelay(Player player) {
         if(player.hasPermission("crates.bypass")) return false;
-        return (System.currentTimeMillis() - getUser(player).getDelay()) >= (CRATE_DELAY * 1000L);
+        return (System.currentTimeMillis() - getUser(player).getDelay()) <= (CRATE_DELAY * 1000L);
     }
 
     @Override
@@ -52,6 +52,7 @@ public class UserManager implements IUserManager {
 
     @Override
     public void addUser(CrateUser user) {
+        if(users.contains(user)) return;
         users.add(user);
     }
 }

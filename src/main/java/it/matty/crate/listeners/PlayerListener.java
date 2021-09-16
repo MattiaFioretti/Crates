@@ -16,7 +16,8 @@ public class PlayerListener extends ListenerManager {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        getPlugin().getConnectionManager().getDataManager().registerUser(player).whenComplete((cratePlayer, e) ->
-                getPlugin().getUserManager().addUser(cratePlayer));
+        getPlugin().getConnectionManager().getDataManager().registerUser(player).whenComplete((cratePlayer, e) -> {
+            getPlugin().getUserManager().addUser(cratePlayer);
+        });
     }
 }

@@ -10,7 +10,14 @@ messages:
       - '&b&l» &f/crates give <player> <crate> [amount] &8• &7Give creates to a user.'
       - '&b&l» &f/crates reload &8• &7Reload message config.'
       - ''
-  list:
-    message: '&b[Crate List] &7Here is the list of &favailable crates:'
-    format: '&3&l» &f%crate_name%'
-  reload: '&b[Reload] &7The message config was &freloaded successfully.'
+    list:
+      message: '&b[Crate List] &7Here is the list of &favailable crates:'
+      format: '&3&l» &f%crate_name%'
+      hover: "&7&o (( Click here to receive the key ))"
+    reload: '&b[Reload] &7The message config was &freloaded successfully.'
+    no-permission: "&c[Error] &7You don't have permission to run this command"
+  crates:
+    open: "&b[Crate] &7You have opened the &f%crate_name% &7crate"
+    error: "&b[Crate] &7You have already opened &ftoo many crates &7for today"
+    wait: "&b[Crate] &7You have to wait &f10s &7between crates."
+    exist: "&b[Crate] &7This &fcrate &7does not exist"

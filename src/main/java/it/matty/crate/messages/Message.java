@@ -17,7 +17,14 @@ public enum Message {
     RELOAD("messages.commands.reload"),
     LIST_MESSAGE("messages.commands.list.message"),
     LIST_HOVER("messages.commands.list.hover"),
-    CREATES_LIST("messages.commands.list.format");
+    CREATES_LIST("messages.commands.list.format"),
+    OPEN_CRATE("messages.crates.open"),
+    MAX_CRATE("messages.crates.error"),
+    WAIT_CRATE("messages.crates.wait"),
+    NO_PERMISSION("messages.commands.no-permission"),
+    CRATE_NOT_EXIST("messages.crates.exist"),
+    PLAYER_NOT_ONLINE("messages.commands.player-not-online"),
+    SYNTAX_ERROR("messages.commands.syntax-error");
 
     private final String path;
     private final IConfigFile file = CratePlugin.getPlugin().getFileManager().getFile("messages");

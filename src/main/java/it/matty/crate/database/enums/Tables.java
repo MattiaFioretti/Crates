@@ -1,4 +1,4 @@
-package it.matty.crate.database.tables;
+package it.matty.crate.database.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

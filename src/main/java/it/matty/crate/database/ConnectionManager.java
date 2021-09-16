@@ -4,7 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import it.matty.crate.CratePlugin;
 import it.matty.crate.database.data.DataManager;
-import it.matty.crate.database.tables.Tables;
+import it.matty.crate.database.enums.Tables;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bukkit.configuration.ConfigurationSection;
@@ -57,6 +57,7 @@ public class ConnectionManager implements IConnectionManager {
     public void start() {
         Connection connection = getConnection();
         PreparedStatement statement = null;
+
         try {
             statement = connection.prepareStatement(Tables.PLAYERS.getTable());
             statement.executeUpdate();

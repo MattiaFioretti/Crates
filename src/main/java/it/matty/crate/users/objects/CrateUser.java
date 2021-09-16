@@ -7,7 +7,7 @@ import java.util.UUID;
 @Getter @Setter
 public class CrateUser {
     private final UUID uuid;
-    private long delay = 0;
+    private long delay = System.currentTimeMillis();
     private int crates;
 
     public CrateUser(UUID uuid, int crates) {

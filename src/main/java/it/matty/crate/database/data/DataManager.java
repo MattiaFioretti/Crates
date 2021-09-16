@@ -41,11 +41,11 @@ public class DataManager {
                 if (!resultSet.next()) {
                     addStmt = connection.prepareStatement("INSERT INTO players(UUID) values (?)");
                     addStmt.setString(1, player.getUniqueId().toString());
+                    addStmt.executeUpdate();
                     return new CrateUser(player.getUniqueId(), 0);
                 } else {
                     return new CrateUser(player.getUniqueId(), resultSet.getInt("crates"));
                 }
-
             } catch (SQLException e) {
                 e.printStackTrace();
             } finally {
@@ -53,5 +53,9 @@ public class DataManager {
             }
             return null;
         }, exe);
+    }
+
+    public void saveUser(Player player) {
+        CrateUser user = CratePlugin.getPlugin().getUserManager().getUser(player);
     }
 }

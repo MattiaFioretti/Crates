@@ -13,6 +13,10 @@ public class ReloadCommand extends SubCommand {
 
     @Override @SneakyThrows
     public void execute(CommandSender sender, String[] args) {
+        if(!sender.hasPermission("crates.reload")) {
+            Message.NO_PERMISSION.send(sender);
+            return;
+        }
         CratePlugin.getPlugin().getFileManager().getFile("messages").reload();
         Message.RELOAD.send(sender);
     }

@@ -9,4 +9,13 @@ public class Utils {
     public String textColor(String text) {
         return ChatColor.translateAlternateColorCodes('&', text);
     }
+
+    public boolean isNumber(String text) {
+        try {
+            Integer.parseInt(text);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
