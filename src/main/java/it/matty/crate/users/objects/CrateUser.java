@@ -9,6 +9,7 @@ public class CrateUser {
     private final UUID uuid;
     private long delay = System.currentTimeMillis();
     private int crates;
+    private boolean isOpening;
 
     public CrateUser(UUID uuid, int crates) {
         this.uuid = uuid;

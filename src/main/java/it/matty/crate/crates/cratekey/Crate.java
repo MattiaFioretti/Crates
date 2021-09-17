@@ -1,6 +1,7 @@
 package it.matty.crate.crates.cratekey;
 
 import it.matty.crate.crates.rewards.Reward;
+import it.matty.crate.users.objects.CrateUser;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -18,5 +19,5 @@ public interface Crate {
 
     void removeItem(Reward item);
 
-    void open(Player player);
+    void open(CrateUser player);
 }

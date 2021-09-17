@@ -3,6 +3,7 @@ package it.matty.crate.crates.cratekey;
 import it.matty.crate.CratePlugin;
 import it.matty.crate.crates.rewards.Reward;
 import it.matty.crate.messages.Message;
+import it.matty.crate.users.objects.CrateUser;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -35,8 +36,11 @@ public class CrateKey implements Crate {
     }
 
     @Override
-    public void open(Player player) {
+    public void open(CrateUser user) {
         List<String> materials = CratePlugin.getPlugin().getConfig().getStringList("settings.animation");
+        Player player = Bukkit.getPlayer(user.getUuid());
+
+        assert player != null;
 
         Inventory inventory = Bukkit.createInventory(null, 45, Message.OPENING.get());
         player.openInventory(inventory);
@@ -55,7 +59,7 @@ public class CrateKey implements Crate {
 
                     inventory.setItem(22, reward.getItem());
                     player.getInventory().addItem(reward.getItem());
-
+                    user.setOpening(false);
                     this.cancel();
                 }
             }

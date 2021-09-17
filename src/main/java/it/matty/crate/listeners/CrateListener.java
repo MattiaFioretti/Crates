@@ -6,6 +6,7 @@ import it.matty.crate.listeners.manager.ListenerManager;
 import it.matty.crate.messages.Message;
 import it.matty.crate.messages.builder.MessageBuilder;
 import it.matty.crate.users.IUserManager;
+import it.matty.crate.users.objects.CrateUser;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -23,8 +24,10 @@ public class CrateListener extends ListenerManager {
         if (event.getItem() == null) return;
 
         Player player = event.getPlayer();
+        CrateUser user = CratePlugin.getPlugin().getUserManager().getUser(player);
         Crate crate = getPlugin().getCrateManager().getCrate(event.getItem());
 
+        if (user == null) return;
         if (crate == null) return;
         event.setCancelled(true);
 
@@ -38,7 +41,13 @@ public class CrateListener extends ListenerManager {
             return;
         }
 
-        crate.open(player);
+        if(user.isOpening()) {
+            Message.ALREADY_OPENING.send(player);
+            return;
+        }
+
+        crate.open(user);
+        user.setOpening(true);
 
         player.getInventory().getItemInMainHand().setAmount(player.getInventory().getItemInMainHand().getAmount() - 1);
         player.spigot().sendMessage(new MessageBuilder(Message.OPEN_CRATE).placeholder("crate_name", crate.getName()).build());

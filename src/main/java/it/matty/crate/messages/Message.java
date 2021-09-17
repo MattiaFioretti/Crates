@@ -29,7 +29,8 @@ public enum Message {
     CRATE_SAVED("messages.crates.saved"),
     EDIT_CRATE("messages.gui.edit"),
     OPENING("messages.gui.opening"),
-    CRATE_DELETE("messages.crates.delete");
+    CRATE_DELETE("messages.crates.delete"),
+    ALREADY_OPENING("messages.crates.already-opening");
 
     private final String path;
     private final IConfigFile file = CratePlugin.getPlugin().getFileManager().getFile("messages");
