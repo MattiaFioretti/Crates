@@ -32,7 +32,7 @@ public class InventoryListener extends ListenerManager {
         if (!(event.getClickedInventory() instanceof PlayerInventory)) return;
         player.getOpenInventory().getTopInventory().addItem(new ItemBuilder(event.getCurrentItem())
                 .setLore("", "&7Percentage: &f0 %", "", "&eRIGHT CLICK &7+1 Percentage",
-                        "&eLEFT CLICK &7+1 Percentage", "&eMIDDLE CLICK &7Remove Item").build());
+                        "&eLEFT CLICK &7-1 Percentage", "&eMIDDLE CLICK &7Remove Item").build());
 
         event.setCancelled(true);
     }
@@ -55,13 +55,13 @@ public class InventoryListener extends ListenerManager {
                 if(getPercentage(event.getCurrentItem()) == 100) return;
                 event.getInventory().setItem(event.getSlot(), new ItemBuilder(event.getCurrentItem())
                         .setLore("", "&7Percentage: &f" + (getPercentage(event.getCurrentItem()) + 1) + " %", "", "&eRIGHT CLICK &7+1 Percentage",
-                                "&eLEFT CLICK &7+1 Percentage", "&eMIDDLE CLICK &7Remove Item").build());
+                                "&eLEFT CLICK &7-1 Percentage", "&eMIDDLE CLICK &7Remove Item").build());
                 break;
             case LEFT:
                 if(getPercentage(event.getCurrentItem()) < 1) return;
                 event.getInventory().setItem(event.getSlot(), new ItemBuilder(event.getCurrentItem())
                         .setLore("", "&7Percentage: &f" + (getPercentage(event.getCurrentItem()) - 1) + " %", "", "&eRIGHT CLICK &7+1 Percentage",
-                                "&eLEFT CLICK &7+1 Percentage", "&eMIDDLE CLICK &7Remove Item").build());
+                                "&eLEFT CLICK &7-1 Percentage", "&eMIDDLE CLICK &7Remove Item").build());
                 break;
         }
     }
