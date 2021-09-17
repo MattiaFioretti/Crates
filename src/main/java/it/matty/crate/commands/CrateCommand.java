@@ -18,6 +18,7 @@ public class CrateCommand extends CommandFramework {
         getSubCommands().add(new GiveCommand("give"));
         getSubCommands().add(new CreateCommand("create"));
         getSubCommands().add(new EditCommand("edit"));
+        getSubCommands().add(new DeleteCommand("delete"));
     }
 
     @Override

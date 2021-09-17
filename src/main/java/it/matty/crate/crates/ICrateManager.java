@@ -24,5 +24,5 @@ public interface ICrateManager {
 
     void loadCrates();
 
-    void open(Crate crate, Player player);
+    void removeCrate(Crate crate);
 }

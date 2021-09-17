@@ -40,7 +40,7 @@ public class CreateCommand extends SubCommand {
 
         Crate newCrate = new CrateKey(args[1], player.getInventory().getItemInMainHand(), new HashSet<>());
 
-        Inventory inventory = Bukkit.createInventory(null, 54, "Creating the " + args[1] + " crate");
+        Inventory inventory = Bukkit.createInventory(null, 54, Message.EDIT_CRATE.get());
         player.openInventory(inventory);
 
 

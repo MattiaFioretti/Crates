@@ -5,7 +5,6 @@ import it.matty.crate.config.FileManager;
 import it.matty.crate.config.IFIleManager;
 import it.matty.crate.crates.CrateManager;
 import it.matty.crate.crates.ICrateManager;
-import it.matty.crate.crates.cratekey.CrateKey;
 import it.matty.crate.database.ConnectionManager;
 import it.matty.crate.database.IConnectionManager;
 import it.matty.crate.listeners.CrateListener;
@@ -15,11 +14,8 @@ import it.matty.crate.users.IUserManager;
 import it.matty.crate.users.UserManager;
 import lombok.Getter;
 import lombok.SneakyThrows;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.HashSet;
 
 @Getter
 public class CratePlugin extends JavaPlugin {

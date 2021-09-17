@@ -40,7 +40,7 @@ public class EditCommand extends SubCommand {
             return;
         }
 
-        Inventory inventory = Bukkit.createInventory(null, 54, "Creating/Editing the " + args[1] + " crate");
+        Inventory inventory = Bukkit.createInventory(null, 54, Message.EDIT_CRATE.get());
 
         for(Reward reward : crate.getItems()) {
             inventory.addItem(new ItemBuilder(reward.getItem()).setLore("",

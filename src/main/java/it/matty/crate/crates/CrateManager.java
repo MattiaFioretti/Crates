@@ -12,7 +12,6 @@ import it.matty.crate.utils.ItemBuilder;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.IOException;
@@ -50,13 +49,25 @@ public class CrateManager implements ICrateManager {
     }
 
     @Override
-    public void addCrate(Crate crate) {
-        crates.add(crate);
+    public void removeCrate(Crate crate) {
+        crates.remove(crate);
+
+        Bukkit.getScheduler().runTaskAsynchronously(CratePlugin.getPlugin(), () -> {
+            IConfigFile file = CratePlugin.getPlugin().getFileManager().getFile("crates");
+
+            file.getConfig().set(crate.getName(), null);
+
+            try {
+                file.saveAndReload();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override
-    public void open(Crate crate, Player player) {
-        crate.open(player);
+    public void addCrate(Crate crate) {
+        crates.add(crate);
     }
 
     @Override
