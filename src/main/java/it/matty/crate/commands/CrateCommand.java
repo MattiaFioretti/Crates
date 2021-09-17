@@ -1,9 +1,7 @@
 package it.matty.crate.commands;
 
 import it.matty.crate.CratePlugin;
-import it.matty.crate.commands.subcommands.GiveCommand;
-import it.matty.crate.commands.subcommands.ListCommand;
-import it.matty.crate.commands.subcommands.ReloadCommand;
+import it.matty.crate.commands.subcommands.*;
 import it.matty.crate.messages.Message;
 import org.bukkit.command.CommandSender;
 
@@ -18,6 +16,8 @@ public class CrateCommand extends CommandFramework {
         getSubCommands().add(new ListCommand("list"));
         getSubCommands().add(new ReloadCommand("reload"));
         getSubCommands().add(new GiveCommand("give"));
+        getSubCommands().add(new CreateCommand("create"));
+        getSubCommands().add(new EditCommand("edit"));
     }
 
     @Override

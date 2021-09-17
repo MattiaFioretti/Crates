@@ -2,12 +2,15 @@ package it.matty.crate.crates;
 
 import com.sun.istack.internal.Nullable;
 import it.matty.crate.crates.cratekey.Crate;
+import it.matty.crate.crates.editor.IEditorManager;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Set;
 
 public interface ICrateManager {
+
+    IEditorManager getEditorManager();
 
     Set<Crate> getCrates();
 
@@ -17,7 +20,9 @@ public interface ICrateManager {
 
     void addCrate(Crate crate);
 
-    void removeCrate(String crate);
+    void saveCrate(Crate crate);
+
+    void loadCrates();
 
     void open(Crate crate, Player player);
 }

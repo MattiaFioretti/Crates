@@ -13,7 +13,7 @@ import java.util.Set;
 public class CrateKey implements Crate {
     @Getter private final String name;
     @Getter private final ItemStack crate;
-    @Getter private final Set<Reward> items = new HashSet<>();
+    @Getter private final Set<Reward> items;
 
     @Override
     public void addItem(Reward item) {

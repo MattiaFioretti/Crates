@@ -6,7 +6,6 @@ import it.matty.crate.listeners.manager.ListenerManager;
 import it.matty.crate.messages.Message;
 import it.matty.crate.messages.builder.MessageBuilder;
 import it.matty.crate.users.IUserManager;
-import it.matty.crate.users.objects.CrateUser;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;

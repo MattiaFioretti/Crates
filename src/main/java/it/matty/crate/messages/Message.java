@@ -24,7 +24,9 @@ public enum Message {
     NO_PERMISSION("messages.commands.no-permission"),
     CRATE_NOT_EXIST("messages.crates.exist"),
     PLAYER_NOT_ONLINE("messages.commands.player-not-online"),
-    SYNTAX_ERROR("messages.commands.syntax-error");
+    SYNTAX_ERROR("messages.commands.syntax-error"),
+    CRATE_ALREADY_EXIST("messages.crates.already-exist"),
+    CRATE_SAVED("messages.crates.saved");
 
     private final String path;
     private final IConfigFile file = CratePlugin.getPlugin().getFileManager().getFile("messages");

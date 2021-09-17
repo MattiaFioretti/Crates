@@ -5,6 +5,7 @@ import it.matty.crate.listeners.manager.ListenerManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 public class PlayerListener extends ListenerManager {
 
@@ -19,5 +20,12 @@ public class PlayerListener extends ListenerManager {
         getPlugin().getConnectionManager().getDataManager().registerUser(player).whenComplete((cratePlayer, e) -> {
             getPlugin().getUserManager().addUser(cratePlayer);
         });
+    }
+
+    @EventHandler
+    public void onQuit(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+
+        getPlugin().getConnectionManager().getDataManager().saveUser(player);
     }
 }

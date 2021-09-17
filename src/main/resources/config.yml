@@ -7,3 +7,4 @@ database:
 settings:
   crate-per-day: 10
   crate-delay: 10 #seconds
+  max-crate-items: 12

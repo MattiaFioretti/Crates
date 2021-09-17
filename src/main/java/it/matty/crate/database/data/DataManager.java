@@ -56,6 +56,25 @@ public class DataManager {
     }
 
     public void saveUser(Player player) {
-        CrateUser user = CratePlugin.getPlugin().getUserManager().getUser(player);
+        CompletableFuture.runAsync(() -> {
+            CrateUser user = CratePlugin.getPlugin().getUserManager().getUser(player);
+
+            Connection connection = null;
+            PreparedStatement statement = null;
+
+            try {
+                connection = manager.getConnection();
+
+                statement = connection.prepareStatement("UPDATE players SET crates=? WHERE UUID=?");
+                statement.setInt(1, user.getCrates());
+                statement.setString(2, user.getUuid().toString());
+
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                manager.close(connection, null, statement);
+            }
+        }, exe);
     }
 }

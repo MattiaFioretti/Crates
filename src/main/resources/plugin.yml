@@ -2,6 +2,7 @@ name: Crates
 author: zMatty28
 version: 1.0.0-SNAPSHOT
 main: it.matty.crate.CratePlugin
+api-version: 1.13
 commands:
   crates:
     aliases: crate

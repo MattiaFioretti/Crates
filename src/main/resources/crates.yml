@@ -1,0 +1,13 @@
+test:
+  item:
+    material: SAND
+    name: "&cCrate"
+    lore:
+      - "Crate Key"
+  rewards:
+    1:
+      material: DIRT
+      name: "&cReward"
+      lore:
+        - "&fReward 1"
+      percentage: 10

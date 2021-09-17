@@ -16,8 +16,12 @@ messages:
       hover: "&7&o (( Click here to receive the key ))"
     reload: '&b[Reload] &7The message config was &freloaded successfully.'
     no-permission: "&c[Error] &7You don't have permission to run this command"
+    player-not-online: "&c[Error] &7This &fplayer &7is not online."
+    syntax-error: "&c[Error] &7There is an error in one of the &fparameters &7entered."
   crates:
     open: "&b[Crate] &7You have opened the &f%crate_name% &7crate"
     error: "&b[Crate] &7You have already opened &ftoo many crates &7for today"
     wait: "&b[Crate] &7You have to wait &f10s &7between crates."
     exist: "&b[Crate] &7This &fcrate &7does not exist"
+    already-exist: "&b[Crate] &7This &fcrate &7already exist"
+    saved: "&b[Crate] &7You successfully saved &fthis crate"
