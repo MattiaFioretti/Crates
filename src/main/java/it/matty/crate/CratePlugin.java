@@ -42,7 +42,7 @@ public class CratePlugin extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
 
-        connectionManager.start();
+        connectionManager.connect();
         crateManager.loadCrates();
 
         new CrateCommand(this, "crate");
@@ -54,6 +54,6 @@ public class CratePlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        connectionManager.closeConnection();
+        connectionManager.disconnect();
     }
 }

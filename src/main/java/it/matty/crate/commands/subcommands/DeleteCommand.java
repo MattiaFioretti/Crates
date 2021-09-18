@@ -1,7 +1,7 @@
 package it.matty.crate.commands.subcommands;
 
 import it.matty.crate.CratePlugin;
-import it.matty.crate.crates.cratekey.Crate;
+import it.matty.crate.crates.crates.Crate;
 import it.matty.crate.messages.Message;
 import org.bukkit.command.CommandSender;
 

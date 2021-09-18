@@ -2,6 +2,7 @@ package it.matty.crate.users;
 
 import it.matty.crate.CratePlugin;
 import it.matty.crate.users.objects.CrateUser;
+import it.matty.crate.users.objects.DefaultCrateUser;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 

@@ -3,7 +3,7 @@ package it.matty.crate.database;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import it.matty.crate.CratePlugin;
-import it.matty.crate.database.data.DataManager;
+import it.matty.crate.database.service.SQLUsersManager;
 import it.matty.crate.database.enums.Tables;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -11,7 +11,6 @@ import org.bukkit.configuration.ConfigurationSection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnectionManager implements IConnectionManager {
@@ -19,7 +18,7 @@ public class ConnectionManager implements IConnectionManager {
     private final HikariDataSource dataSource;
 
     @Getter
-    private final DataManager dataManager;
+    private final SQLUsersManager dataManager;
 
     public ConnectionManager(String sect) {
         ConfigurationSection section = CratePlugin.getPlugin().getConfig().getConfigurationSection(sect);
@@ -31,16 +30,7 @@ public class ConnectionManager implements IConnectionManager {
         config.setPassword(section.getString("password"));
 
         this.dataSource = new HikariDataSource(config);
-        this.dataManager = new DataManager(this);
-    }
-
-    @Override @SneakyThrows
-    public void close(Connection conn, ResultSet rs, PreparedStatement... stmt) {
-        if (conn != null) conn.close();
-        if (rs != null) rs.close();
-
-        for (PreparedStatement statement : stmt)
-            if (statement != null) statement.close();
+        this.dataManager = new SQLUsersManager(this);
     }
 
     @Override @SneakyThrows
@@ -49,22 +39,17 @@ public class ConnectionManager implements IConnectionManager {
     }
 
     @Override
-    public void closeConnection() {
+    public void disconnect() {
         dataSource.close();
     }
 
     @Override
-    public void start() {
-        Connection connection = getConnection();
-        PreparedStatement statement = null;
-
-        try {
-            statement = connection.prepareStatement(Tables.PLAYERS.getTable());
+    public void connect() {
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(Tables.PLAYERS.getTable())) {
             statement.executeUpdate();
         } catch (SQLException exception) {
             exception.printStackTrace();
-        } finally {
-            close(connection, null, statement);
         }
     }
 }

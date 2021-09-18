@@ -1,12 +1,13 @@
 package it.matty.crate.listeners;
 
 import it.matty.crate.CratePlugin;
-import it.matty.crate.crates.cratekey.Crate;
+import it.matty.crate.crates.crates.Crate;
 import it.matty.crate.listeners.manager.ListenerManager;
 import it.matty.crate.messages.Message;
 import it.matty.crate.messages.builder.MessageBuilder;
 import it.matty.crate.users.IUserManager;
 import it.matty.crate.users.objects.CrateUser;
+import it.matty.crate.users.objects.DefaultCrateUser;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;

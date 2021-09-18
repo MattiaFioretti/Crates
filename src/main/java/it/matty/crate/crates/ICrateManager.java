@@ -1,16 +1,15 @@
 package it.matty.crate.crates;
 
 import com.sun.istack.internal.Nullable;
-import it.matty.crate.crates.cratekey.Crate;
-import it.matty.crate.crates.editor.IEditorManager;
-import org.bukkit.entity.Player;
+import it.matty.crate.crates.crates.Crate;
+import it.matty.crate.crates.editor.EditorService;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Set;
 
 public interface ICrateManager {
 
-    IEditorManager getEditorManager();
+    EditorService getEditorManager();
 
     Set<Crate> getCrates();
 

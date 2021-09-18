@@ -1,8 +1,8 @@
 package it.matty.crate.commands.subcommands;
 
 import it.matty.crate.CratePlugin;
-import it.matty.crate.crates.cratekey.Crate;
-import it.matty.crate.crates.cratekey.CrateKey;
+import it.matty.crate.crates.crates.Crate;
+import it.matty.crate.crates.crates.impl.DefaultCrate;
 import it.matty.crate.messages.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -38,7 +38,7 @@ public class CreateCommand extends SubCommand {
             return;
         }
 
-        Crate newCrate = new CrateKey(args[1], player.getInventory().getItemInMainHand(), new HashSet<>());
+        Crate newCrate = new DefaultCrate(args[1], player.getInventory().getItemInMainHand(), new HashSet<>());
 
         Inventory inventory = Bukkit.createInventory(null, 54, Message.EDIT_CRATE.get());
         player.openInventory(inventory);

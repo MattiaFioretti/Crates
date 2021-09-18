@@ -1,9 +1,11 @@
-package it.matty.crate.crates.cratekey;
+package it.matty.crate.crates.crates.impl;
 
 import it.matty.crate.CratePlugin;
+import it.matty.crate.crates.crates.Crate;
 import it.matty.crate.crates.rewards.Reward;
 import it.matty.crate.messages.Message;
 import it.matty.crate.users.objects.CrateUser;
+import it.matty.crate.users.objects.DefaultCrateUser;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -20,7 +22,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @AllArgsConstructor
-public class CrateKey implements Crate {
+public class DefaultCrate implements Crate {
     @Getter private final String name;
     @Getter private final ItemStack crate;
     @Getter private final Set<Reward> items;

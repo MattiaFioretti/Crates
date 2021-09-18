@@ -1,19 +1,20 @@
 package it.matty.crate.crates.editor;
 
-import it.matty.crate.crates.cratekey.Crate;
-import it.matty.crate.crates.editor.object.CrateEditor;
+import it.matty.crate.crates.crates.Crate;
+import it.matty.crate.crates.editor.sessions.EditSession;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class EditorManager implements IEditorManager {
-    @Getter private final Set<CrateEditor> editors = new HashSet<>();
+public class EditorServiceImpl implements EditorService {
+    @Getter
+    private final Set<EditSession> editors = new HashSet<>();
 
     @Override
-    public CrateEditor getEditor(Player player) {
-        for(CrateEditor editor : editors) {
+    public EditSession getEditor(Player player) {
+        for(EditSession editor : editors) {
             if(player.getUniqueId().equals(editor.getUuid()))
                 return editor;
         }
@@ -27,7 +28,7 @@ public class EditorManager implements IEditorManager {
 
     @Override
     public void addEditor(Crate crate, Player player) {
-        editors.add(new CrateEditor(player.getUniqueId(), crate));
+        editors.add(new EditSession(player.getUniqueId(), crate));
     }
 
     @Override

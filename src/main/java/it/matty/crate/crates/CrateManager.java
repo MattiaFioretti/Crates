@@ -2,10 +2,10 @@ package it.matty.crate.crates;
 
 import it.matty.crate.CratePlugin;
 import it.matty.crate.config.objects.IConfigFile;
-import it.matty.crate.crates.cratekey.Crate;
-import it.matty.crate.crates.cratekey.CrateKey;
-import it.matty.crate.crates.editor.EditorManager;
-import it.matty.crate.crates.editor.IEditorManager;
+import it.matty.crate.crates.crates.Crate;
+import it.matty.crate.crates.crates.impl.DefaultCrate;
+import it.matty.crate.crates.editor.EditorServiceImpl;
+import it.matty.crate.crates.editor.EditorService;
 import it.matty.crate.crates.rewards.CrateReward;
 import it.matty.crate.crates.rewards.Reward;
 import it.matty.crate.utils.ItemBuilder;
@@ -22,10 +22,10 @@ public class CrateManager implements ICrateManager {
     @Getter
     private final Set<Crate> crates = new HashSet<>();
     @Getter
-    private final IEditorManager editorManager;
+    private final EditorService editorManager;
 
     public CrateManager() {
-        this.editorManager = new EditorManager();
+        this.editorManager = new EditorServiceImpl();
     }
 
     @Override
@@ -101,7 +101,7 @@ public class CrateManager implements ICrateManager {
         IConfigFile file = CratePlugin.getPlugin().getFileManager().getFile("crates");
 
         for (String crates : file.getConfig().getKeys(false)) {
-            Crate crate = new CrateKey(crates, new ItemBuilder(
+            Crate crate = new DefaultCrate(crates, new ItemBuilder(
                     Material.valueOf(file.getConfig().getString(crates + ".item.material")))
                     .setName(file.getConfig().getString(crates + ".item.name"))
                     .setLore(file.getConfig().getStringList(crates + ".item.lore")).build(), new HashSet<>());

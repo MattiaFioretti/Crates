@@ -1,21 +1,17 @@
 package it.matty.crate.database;
 
-import it.matty.crate.database.data.DataManager;
+import it.matty.crate.database.service.SQLUsersManager;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public interface IConnectionManager {
 
-    void close(Connection connection, ResultSet resultSet, PreparedStatement... statements);
+    void disconnect();
 
-    void closeConnection();
-
-    void start() throws SQLException;
+    void connect() throws SQLException;
 
     Connection getConnection() throws SQLException;
 
-    DataManager getDataManager();
+    SQLUsersManager getDataManager();
 }

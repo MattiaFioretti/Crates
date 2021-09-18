@@ -1,8 +1,7 @@
 package it.matty.crate.listeners;
 
-import com.sun.org.apache.regexp.internal.RE;
 import it.matty.crate.CratePlugin;
-import it.matty.crate.crates.cratekey.Crate;
+import it.matty.crate.crates.crates.Crate;
 import it.matty.crate.crates.rewards.CrateReward;
 import it.matty.crate.listeners.manager.ListenerManager;
 import it.matty.crate.messages.Message;

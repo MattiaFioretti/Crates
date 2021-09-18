@@ -1,18 +1,17 @@
 package it.matty.crate.users.objects;
 
-import lombok.*;
+public interface CrateUser {
+    java.util.UUID getUuid();
 
-import java.util.UUID;
+    long getDelay();
 
-@Getter @Setter
-public class CrateUser {
-    private final UUID uuid;
-    private long delay = System.currentTimeMillis();
-    private int crates;
-    private boolean isOpening;
+    int getCrates();
 
-    public CrateUser(UUID uuid, int crates) {
-        this.uuid = uuid;
-        this.crates = crates;
-    }
+    boolean isOpening();
+
+    void setDelay(long delay);
+
+    void setCrates(int crates);
+
+    void setOpening(boolean isOpening);
 }

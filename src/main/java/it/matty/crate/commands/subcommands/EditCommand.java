@@ -1,8 +1,7 @@
 package it.matty.crate.commands.subcommands;
 
 import it.matty.crate.CratePlugin;
-import it.matty.crate.crates.cratekey.Crate;
-import it.matty.crate.crates.cratekey.CrateKey;
+import it.matty.crate.crates.crates.Crate;
 import it.matty.crate.crates.rewards.Reward;
 import it.matty.crate.messages.Message;
 import it.matty.crate.utils.ItemBuilder;
@@ -10,8 +9,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-
-import java.util.HashSet;
 
 public class EditCommand extends SubCommand {
 

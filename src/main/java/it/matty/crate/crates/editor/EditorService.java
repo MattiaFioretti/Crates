@@ -1,16 +1,16 @@
 package it.matty.crate.crates.editor;
 
-import it.matty.crate.crates.cratekey.Crate;
-import it.matty.crate.crates.editor.object.CrateEditor;
+import it.matty.crate.crates.crates.Crate;
+import it.matty.crate.crates.editor.sessions.EditSession;
 import org.bukkit.entity.Player;
 
 import java.util.Set;
 
-public interface IEditorManager {
+public interface EditorService {
 
-    Set<CrateEditor> getEditors();
+    Set<EditSession> getEditors();
 
-    CrateEditor getEditor(Player player);
+    EditSession getEditor(Player player);
 
     void addEditor(Crate crate, Player player);
 

@@ -2,7 +2,7 @@ package it.matty.crate.crates.builders;
 
 import it.matty.crate.CratePlugin;
 import it.matty.crate.crates.ICrateManager;
-import it.matty.crate.crates.cratekey.CrateKey;
+import it.matty.crate.crates.crates.impl.DefaultCrate;
 import it.matty.crate.crates.rewards.CrateReward;
 import it.matty.crate.crates.rewards.Reward;
 import org.bukkit.inventory.ItemStack;
@@ -13,7 +13,7 @@ import java.util.Set;
 public class CrateBuilder {
     private final ICrateManager manager = CratePlugin.getPlugin().getCrateManager();
 
-    private CrateKey crate;
+    private DefaultCrate crate;
 
     private final String name;
     private final ItemStack item;
@@ -23,7 +23,7 @@ public class CrateBuilder {
         this.name = name;
         this.item = item;
 
-        this.crate = new CrateKey(name, item, new HashSet<>());
+        this.crate = new DefaultCrate(name, item, new HashSet<>());
     }
 
     public CrateBuilder addReward(ItemStack itemStack, double percentage) {
@@ -32,7 +32,7 @@ public class CrateBuilder {
     }
 
     public void create() {
-        CratePlugin.getPlugin().getCrateManager().addCrate(new CrateKey(name, item, rewards));
+        CratePlugin.getPlugin().getCrateManager().addCrate(new DefaultCrate(name, item, rewards));
     }
 
 }
