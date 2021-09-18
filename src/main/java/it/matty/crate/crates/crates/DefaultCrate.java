@@ -4,6 +4,7 @@ import it.matty.crate.CratePlugin;
 import it.matty.crate.crates.rewards.Reward;
 import it.matty.crate.messages.Message;
 import it.matty.crate.users.objects.CrateUser;
+import it.matty.crate.utils.ItemBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -59,9 +60,11 @@ public class DefaultCrate implements Crate {
 
                 if (on.get() == 22) {
                     Reward reward = getRandomReward();
+                    if(reward != null) {
+                        inventory.setItem(22, reward.getItem());
+                        player.getInventory().addItem(reward.getItem());
+                    } else inventory.setItem(22, new ItemBuilder(Material.BARRIER).build());
 
-                    inventory.setItem(22, reward.getItem());
-                    player.getInventory().addItem(reward.getItem());
                     user.setOpening(false);
                     this.cancel();
                 }
