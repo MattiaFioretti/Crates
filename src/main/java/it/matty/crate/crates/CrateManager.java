@@ -1,12 +1,12 @@
 package it.matty.crate.crates;
 
 import it.matty.crate.CratePlugin;
-import it.matty.crate.config.objects.IConfigFile;
+import it.matty.crate.config.objects.ConfigFile;
 import it.matty.crate.crates.crates.Crate;
-import it.matty.crate.crates.crates.impl.DefaultCrate;
-import it.matty.crate.crates.editor.EditorServiceImpl;
+import it.matty.crate.crates.crates.DefaultCrate;
 import it.matty.crate.crates.editor.EditorService;
-import it.matty.crate.crates.rewards.CrateReward;
+import it.matty.crate.crates.editor.IEditorService;
+import it.matty.crate.crates.rewards.DefaultReward;
 import it.matty.crate.crates.rewards.Reward;
 import it.matty.crate.utils.ItemBuilder;
 import lombok.Getter;
@@ -22,10 +22,10 @@ public class CrateManager implements ICrateManager {
     @Getter
     private final Set<Crate> crates = new HashSet<>();
     @Getter
-    private final EditorService editorManager;
+    private final IEditorService editorManager;
 
     public CrateManager() {
-        this.editorManager = new EditorServiceImpl();
+        this.editorManager = new EditorService();
     }
 
     @Override
@@ -53,7 +53,7 @@ public class CrateManager implements ICrateManager {
         crates.remove(crate);
 
         Bukkit.getScheduler().runTaskAsynchronously(CratePlugin.getPlugin(), () -> {
-            IConfigFile file = CratePlugin.getPlugin().getFileManager().getFile("crates");
+            ConfigFile file = CratePlugin.getPlugin().getFileManager().getFile("crates");
 
             file.getConfig().set(crate.getName(), null);
 
@@ -73,7 +73,7 @@ public class CrateManager implements ICrateManager {
     @Override
     public void saveCrate(Crate crate) {
         Bukkit.getScheduler().runTaskAsynchronously(CratePlugin.getPlugin(), () -> {
-            IConfigFile file = CratePlugin.getPlugin().getFileManager().getFile("crates");
+            ConfigFile file = CratePlugin.getPlugin().getFileManager().getFile("crates");
 
             file.getConfig().set(crate.getName(), null);
 
@@ -98,7 +98,7 @@ public class CrateManager implements ICrateManager {
 
     @Override
     public void loadCrates() {
-        IConfigFile file = CratePlugin.getPlugin().getFileManager().getFile("crates");
+        ConfigFile file = CratePlugin.getPlugin().getFileManager().getFile("crates");
 
         for (String crates : file.getConfig().getKeys(false)) {
             Crate crate = new DefaultCrate(crates, new ItemBuilder(
@@ -107,7 +107,7 @@ public class CrateManager implements ICrateManager {
                     .setLore(file.getConfig().getStringList(crates + ".item.lore")).build(), new HashSet<>());
 
             for (String rewards : file.getConfig().getConfigurationSection(crates + ".rewards").getKeys(false)) {
-                crate.addItem(new CrateReward(new ItemStack(
+                crate.addItem(new DefaultReward(new ItemStack(
                         Material.valueOf(file.getConfig().getString(crates + ".rewards." + rewards + ".material"))),
                         file.getConfig().getDouble(crates + ".rewards." + rewards + ".percentage")));
             }

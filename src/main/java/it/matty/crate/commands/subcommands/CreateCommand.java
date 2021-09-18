@@ -2,7 +2,7 @@ package it.matty.crate.commands.subcommands;
 
 import it.matty.crate.CratePlugin;
 import it.matty.crate.crates.crates.Crate;
-import it.matty.crate.crates.crates.impl.DefaultCrate;
+import it.matty.crate.crates.crates.DefaultCrate;
 import it.matty.crate.messages.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -19,21 +19,21 @@ public class CreateCommand extends SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if(!(sender instanceof Player)) return;
+        if (!(sender instanceof Player)) return;
         Player player = (Player) sender;
 
-        if(!sender.hasPermission("crates.create")) {
+        if (!sender.hasPermission("crates.create")) {
             Message.NO_PERMISSION.send(sender);
             return;
         }
 
-        if(args.length != 2) {
+        if (args.length != 2) {
             Message.SYNTAX_ERROR.send(sender);
             return;
         }
 
         Crate crate = CratePlugin.getPlugin().getCrateManager().getCrate(args[1]);
-        if(crate != null) {
+        if (crate != null) {
             Message.CRATE_ALREADY_EXIST.send(sender);
             return;
         }

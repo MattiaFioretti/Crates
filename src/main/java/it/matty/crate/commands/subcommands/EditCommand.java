@@ -18,28 +18,28 @@ public class EditCommand extends SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if(!(sender instanceof Player)) return;
+        if (!(sender instanceof Player)) return;
         Player player = (Player) sender;
 
-        if(!sender.hasPermission("crates.edit")) {
+        if (!sender.hasPermission("crates.edit")) {
             Message.NO_PERMISSION.send(sender);
             return;
         }
 
-        if(args.length != 2) {
+        if (args.length != 2) {
             Message.SYNTAX_ERROR.send(sender);
             return;
         }
 
         Crate crate = CratePlugin.getPlugin().getCrateManager().getCrate(args[1]);
-        if(crate == null) {
+        if (crate == null) {
             Message.CRATE_NOT_EXIST.send(sender);
             return;
         }
 
         Inventory inventory = Bukkit.createInventory(null, 54, Message.EDIT_CRATE.get());
 
-        for(Reward reward : crate.getItems()) {
+        for (Reward reward : crate.getItems()) {
             inventory.addItem(new ItemBuilder(reward.getItem()).setLore("",
                     "&7Percentage: &f" + reward.getChance() + " %", "", "&eRIGHT CLICK &7+1 Percentage",
                     "&eLEFT CLICK &7+1 Percentage", "&eMIDDLE CLICK &7Remove Item").build());

@@ -20,7 +20,8 @@ public abstract class CommandFramework implements CommandExecutor, ICommandFrame
         registerSubcommands();
     }
 
-    @Override @SneakyThrows
+    @Override
+    @SneakyThrows
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
         if (args.length == 0)
             execute(sender);

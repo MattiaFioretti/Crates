@@ -1,17 +1,17 @@
 package it.matty.crate.messages;
 
 import it.matty.crate.CratePlugin;
-import it.matty.crate.config.objects.IConfigFile;
+import it.matty.crate.config.objects.ConfigFile;
 import it.matty.crate.utils.Utils;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
 
-@RequiredArgsConstructor @Getter
+@RequiredArgsConstructor
+@Getter
 public enum Message {
     HELP_MESSAGE("messages.commands.help"),
     RELOAD("messages.commands.reload"),
@@ -33,7 +33,7 @@ public enum Message {
     ALREADY_OPENING("messages.crates.already-opening");
 
     private final String path;
-    private final IConfigFile file = CratePlugin.getPlugin().getFileManager().getFile("messages");
+    private final ConfigFile file = CratePlugin.getPlugin().getFileManager().getFile("messages");
 
     public void send(CommandSender sender) {
         if (file.getConfig().get(path) instanceof List)

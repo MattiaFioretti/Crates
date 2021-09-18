@@ -2,7 +2,7 @@ package it.matty.crate.listeners;
 
 import it.matty.crate.CratePlugin;
 import it.matty.crate.crates.crates.Crate;
-import it.matty.crate.crates.rewards.CrateReward;
+import it.matty.crate.crates.rewards.DefaultReward;
 import it.matty.crate.listeners.manager.ListenerManager;
 import it.matty.crate.messages.Message;
 import it.matty.crate.utils.ItemBuilder;
@@ -51,13 +51,13 @@ public class InventoryListener extends ListenerManager {
                 event.getCurrentItem().setAmount(0);
                 break;
             case RIGHT:
-                if(getPercentage(event.getCurrentItem()) == 100) return;
+                if (getPercentage(event.getCurrentItem()) == 100) return;
                 event.getInventory().setItem(event.getSlot(), new ItemBuilder(event.getCurrentItem())
                         .setLore("", "&7Percentage: &f" + (getPercentage(event.getCurrentItem()) + 1) + " %", "", "&eRIGHT CLICK &7+1 Percentage",
                                 "&eLEFT CLICK &7-1 Percentage", "&eMIDDLE CLICK &7Remove Item").build());
                 break;
             case LEFT:
-                if(getPercentage(event.getCurrentItem()) < 1) return;
+                if (getPercentage(event.getCurrentItem()) < 1) return;
                 event.getInventory().setItem(event.getSlot(), new ItemBuilder(event.getCurrentItem())
                         .setLore("", "&7Percentage: &f" + (getPercentage(event.getCurrentItem()) - 1) + " %", "", "&eRIGHT CLICK &7+1 Percentage",
                                 "&eLEFT CLICK &7-1 Percentage", "&eMIDDLE CLICK &7Remove Item").build());
@@ -76,7 +76,7 @@ public class InventoryListener extends ListenerManager {
 
         for (ItemStack itemStack : event.getInventory().getContents()) {
             if (itemStack == null || itemStack.getType() == Material.AIR) continue;
-            crate.addItem(new CrateReward(itemStack, getPercentage(itemStack)));
+            crate.addItem(new DefaultReward(itemStack, getPercentage(itemStack)));
         }
 
         getPlugin().getCrateManager().getEditorManager().removeEditor(player);

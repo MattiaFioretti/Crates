@@ -12,19 +12,19 @@ public class DeleteCommand extends SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if(!sender.hasPermission("crates.delete")) {
+        if (!sender.hasPermission("crates.delete")) {
             Message.NO_PERMISSION.send(sender);
             return;
         }
 
-        if(args.length < 2) {
+        if (args.length < 2) {
             Message.HELP_MESSAGE.send(sender);
             return;
         }
 
         Crate crate = CratePlugin.getPlugin().getCrateManager().getCrate(args[1]);
 
-        if(crate == null) {
+        if (crate == null) {
             Message.CRATE_NOT_EXIST.send(sender);
             return;
         }

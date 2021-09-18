@@ -7,7 +7,6 @@ import it.matty.crate.messages.Message;
 import it.matty.crate.messages.builder.MessageBuilder;
 import it.matty.crate.users.IUserManager;
 import it.matty.crate.users.objects.CrateUser;
-import it.matty.crate.users.objects.DefaultCrateUser;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -32,17 +31,17 @@ public class CrateListener extends ListenerManager {
         if (crate == null) return;
         event.setCancelled(true);
 
-        if(manager.canOpen(player)) {
+        if (manager.canOpen(player)) {
             Message.MAX_CRATE.send(player);
             return;
         }
 
-        if(manager.isDelay(player)) {
+        if (manager.isDelay(player)) {
             Message.WAIT_CRATE.send(player);
             return;
         }
 
-        if(user.isOpening()) {
+        if (user.isOpening()) {
             Message.ALREADY_OPENING.send(player);
             return;
         }
@@ -59,7 +58,7 @@ public class CrateListener extends ListenerManager {
 
     @EventHandler
     public void onOpen(InventoryClickEvent event) {
-        if(event.getView().getTitle().equals(Message.OPENING.get())) {
+        if (event.getView().getTitle().equals(Message.OPENING.get())) {
             event.setCancelled(true);
         }
     }

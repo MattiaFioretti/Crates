@@ -1,34 +1,24 @@
 package it.matty.crate.config.objects;
 
-import it.matty.crate.CratePlugin;
-import lombok.Getter;
-import lombok.SneakyThrows;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
 
-public class ConfigFile implements IConfigFile {
-    @Getter private final String name;
-    @Getter private final File file;
-    @Getter private YamlConfiguration config;
+public interface ConfigFile {
 
-    @SneakyThrows
-    public ConfigFile(CratePlugin plugin, String name) {
-        this.name = name;
+    YamlConfiguration getConfig();
 
-        this.file = new File(plugin.getDataFolder(), name + ".yml");
-        if(!file.exists()) CratePlugin.getPlugin().saveResource(name + ".yml", true);
-        this.config = YamlConfiguration.loadConfiguration(this.file);
-    }
+    File getFile();
 
-    @Override
-    public void save() throws IOException {
-        config.save(file);
-    }
+    String getName();
 
-    @Override
-    public void reload() {
-        this.config = YamlConfiguration.loadConfiguration(this.file);
+    void save() throws IOException;
+
+    void reload();
+
+    default void saveAndReload() throws IOException {
+        save();
+        reload();
     }
 }

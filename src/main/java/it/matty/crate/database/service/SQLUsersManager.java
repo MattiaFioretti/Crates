@@ -53,7 +53,7 @@ public class SQLUsersManager {
             CrateUser user = CratePlugin.getPlugin().getUserManager().getUser(player);
 
             try (Connection connection = manager.getConnection();
-                PreparedStatement statement = connection.prepareStatement("UPDATE players SET crates=? WHERE UUID=?")) {
+                 PreparedStatement statement = connection.prepareStatement("UPDATE players SET crates=? WHERE UUID=?")) {
                 statement.setInt(1, user.getCrates());
                 statement.setString(2, user.getUuid().toString());
 

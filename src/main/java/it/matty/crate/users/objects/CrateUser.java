@@ -5,13 +5,13 @@ public interface CrateUser {
 
     long getDelay();
 
-    int getCrates();
-
-    boolean isOpening();
-
     void setDelay(long delay);
 
+    int getCrates();
+
     void setCrates(int crates);
+
+    boolean isOpening();
 
     void setOpening(boolean isOpening);
 }

@@ -19,7 +19,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 @Getter
 public class CratePlugin extends JavaPlugin {
-    @Getter private static CratePlugin plugin;
+    @Getter
+    private static CratePlugin plugin;
 
     private ICrateManager crateManager;
     private IUserManager userManager;
@@ -38,7 +39,8 @@ public class CratePlugin extends JavaPlugin {
         this.connectionManager = new ConnectionManager("database");
     }
 
-    @Override @SneakyThrows
+    @Override
+    @SneakyThrows
     public void onEnable() {
         saveDefaultConfig();
 

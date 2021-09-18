@@ -4,7 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import it.matty.crate.CratePlugin;
 import it.matty.crate.database.service.SQLUsersManager;
-import it.matty.crate.database.enums.Tables;
+import it.matty.crate.database.utils.Tables;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bukkit.configuration.ConfigurationSection;
@@ -33,7 +33,8 @@ public class ConnectionManager implements IConnectionManager {
         this.dataManager = new SQLUsersManager(this);
     }
 
-    @Override @SneakyThrows
+    @Override
+    @SneakyThrows
     public Connection getConnection() {
         return dataSource.getConnection();
     }

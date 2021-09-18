@@ -1,6 +1,6 @@
 package it.matty.crate.users.objects;
 
-import lombok.*;
+import lombok.Data;
 
 import java.util.UUID;
 

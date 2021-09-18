@@ -1,11 +1,9 @@
-package it.matty.crate.crates.crates.impl;
+package it.matty.crate.crates.crates;
 
 import it.matty.crate.CratePlugin;
-import it.matty.crate.crates.crates.Crate;
 import it.matty.crate.crates.rewards.Reward;
 import it.matty.crate.messages.Message;
 import it.matty.crate.users.objects.CrateUser;
-import it.matty.crate.users.objects.DefaultCrateUser;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -23,9 +21,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @AllArgsConstructor
 public class DefaultCrate implements Crate {
-    @Getter private final String name;
-    @Getter private final ItemStack crate;
-    @Getter private final Set<Reward> items;
+    @Getter
+    private final String name;
+    @Getter
+    private final ItemStack crate;
+    @Getter
+    private final Set<Reward> items;
 
     @Override
     public void addItem(Reward item) {
@@ -56,7 +57,7 @@ public class DefaultCrate implements Crate {
                 inventory.setItem(on.getAndIncrement(), new ItemStack(Material.valueOf(materials.get(ThreadLocalRandom.current().nextInt(materials.size())))));
                 inventory.setItem(under.getAndDecrement(), new ItemStack(Material.valueOf(materials.get(ThreadLocalRandom.current().nextInt(materials.size())))));
 
-                if(on.get() == 22) {
+                if (on.get() == 22) {
                     Reward reward = getRandomReward();
 
                     inventory.setItem(22, reward.getItem());

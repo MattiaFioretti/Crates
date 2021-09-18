@@ -14,13 +14,13 @@ public class ListCommand extends SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if(!sender.hasPermission("crates.list")) {
+        if (!sender.hasPermission("crates.list")) {
             Message.NO_PERMISSION.send(sender);
             return;
         }
 
         Message.LIST_MESSAGE.send(sender);
-        for(Crate crate : CratePlugin.getPlugin().getCrateManager().getCrates()) {
+        for (Crate crate : CratePlugin.getPlugin().getCrateManager().getCrates()) {
             sender.spigot().sendMessage(new MessageBuilder(Message.CREATES_LIST)
                     .setCommand("/crate give " + sender.getName() + " " + crate.getName())
                     .setHover(Message.LIST_HOVER.get())

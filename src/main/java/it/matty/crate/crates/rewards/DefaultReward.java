@@ -5,9 +5,11 @@ import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 
 @AllArgsConstructor
-public class CrateReward implements Reward {
-    @Getter private ItemStack item;
-    @Getter private double chance;
+public class DefaultReward implements Reward {
+    @Getter
+    private ItemStack item;
+    @Getter
+    private double chance;
 
     @Override
     public void setItem(ItemStack item) {

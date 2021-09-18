@@ -11,9 +11,10 @@ public class ReloadCommand extends SubCommand {
         super(subcommand);
     }
 
-    @Override @SneakyThrows
+    @Override
+    @SneakyThrows
     public void execute(CommandSender sender, String[] args) {
-        if(!sender.hasPermission("crates.reload")) {
+        if (!sender.hasPermission("crates.reload")) {
             Message.NO_PERMISSION.send(sender);
             return;
         }
