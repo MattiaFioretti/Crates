@@ -1,14 +1,16 @@
 package it.matty.crate.crates.editor.sessions;
 
 import it.matty.crate.crates.crates.Crate;
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Data
 public class EditSession {
-    private UUID uuid;
-    private Crate crate;
+    private final UUID uuid;
+    private final Crate crate;
+    private ItemStack item;
 }

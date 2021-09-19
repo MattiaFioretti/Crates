@@ -28,7 +28,8 @@ public class EditorService implements IEditorService {
 
     @Override
     public void addEditor(Crate crate, Player player) {
-        editors.add(new EditSession(player.getUniqueId(), crate));
+        editors.add(
+                new EditSession(player.getUniqueId(), crate));
     }
 
     @Override

@@ -2,6 +2,7 @@ package it.matty.crate.listeners;
 
 import it.matty.crate.CratePlugin;
 import it.matty.crate.crates.crates.Crate;
+import it.matty.crate.crates.editor.sessions.EditSession;
 import it.matty.crate.crates.rewards.DefaultReward;
 import it.matty.crate.listeners.manager.ListenerManager;
 import it.matty.crate.messages.Message;
@@ -30,8 +31,7 @@ public class InventoryListener extends ListenerManager {
 
         if (!(event.getClickedInventory() instanceof PlayerInventory)) return;
         player.getOpenInventory().getTopInventory().addItem(new ItemBuilder(event.getCurrentItem())
-                .setLore("", "&7Percentage: &f0 %", "", "&eRIGHT CLICK &7+1 Percentage",
-                        "&eLEFT CLICK &7-1 Percentage", "&eMIDDLE CLICK &7Remove Item").build());
+                .setLore("", "&7Percentage: &f0 %", "", "&eSHIFT CLICK &7Set Percentage", "&eMIDDLE CLICK &7Remove Item").build());
 
         event.setCancelled(true);
     }
@@ -39,6 +39,9 @@ public class InventoryListener extends ListenerManager {
     @EventHandler
     public void onModify(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
+        EditSession session = getPlugin().getCrateManager().getEditorManager().getEditor(player);
+
+        assert session != null;
 
         if (!getPlugin().getCrateManager().getEditorManager().isEditing(player)) return;
         if (event.getCurrentItem() == null) return;
@@ -50,25 +53,21 @@ public class InventoryListener extends ListenerManager {
             case MIDDLE:
                 event.getCurrentItem().setAmount(0);
                 break;
-            case RIGHT:
-                if (getPercentage(event.getCurrentItem()) == 100) return;
-                event.getInventory().setItem(event.getSlot(), new ItemBuilder(event.getCurrentItem())
-                        .setLore("", "&7Percentage: &f" + (getPercentage(event.getCurrentItem()) + 1) + " %", "", "&eRIGHT CLICK &7+1 Percentage",
-                                "&eLEFT CLICK &7-1 Percentage", "&eMIDDLE CLICK &7Remove Item").build());
-                break;
-            case LEFT:
-                if (getPercentage(event.getCurrentItem()) < 1) return;
-                event.getInventory().setItem(event.getSlot(), new ItemBuilder(event.getCurrentItem())
-                        .setLore("", "&7Percentage: &f" + (getPercentage(event.getCurrentItem()) - 1) + " %", "", "&eRIGHT CLICK &7+1 Percentage",
-                                "&eLEFT CLICK &7-1 Percentage", "&eMIDDLE CLICK &7Remove Item").build());
+            case SHIFT_RIGHT:
+                session.setItem(event.getCurrentItem());
+                event.getInventory().setItem(event.getSlot(), null);
+                player.closeInventory();
+
+                Message.SET_PERCENTAGE.send(player);
                 break;
         }
     }
 
 
     @EventHandler
-    public void onClick(InventoryCloseEvent event) {
+    public void onClose(InventoryCloseEvent event) {
         Player player = (Player) event.getPlayer();
+        EditSession session = getPlugin().getCrateManager().getEditorManager().getEditor(player);
 
         if (!getPlugin().getCrateManager().getEditorManager().isEditing(player)) return;
         Crate crate = getPlugin().getCrateManager().getEditorManager().getEditor(player).getCrate();
@@ -79,10 +78,12 @@ public class InventoryListener extends ListenerManager {
             crate.addItem(new DefaultReward(itemStack, getPercentage(itemStack)));
         }
 
-        getPlugin().getCrateManager().getEditorManager().removeEditor(player);
         getPlugin().getCrateManager().saveCrate(crate);
 
-        Message.CRATE_SAVED.send(player);
+        if(session.getItem() == null) {
+            getPlugin().getCrateManager().getEditorManager().removeEditor(player);
+            Message.CRATE_SAVED.send(player);
+        }
     }
 
     public double getPercentage(ItemStack itemStack) {

@@ -40,9 +40,9 @@ public class EditCommand extends SubCommand {
         Inventory inventory = Bukkit.createInventory(null, 54, Message.EDIT_CRATE.get());
 
         for (Reward reward : crate.getItems()) {
-            inventory.addItem(new ItemBuilder(reward.getItem()).setLore("",
-                    "&7Percentage: &f" + reward.getChance() + " %", "", "&eRIGHT CLICK &7+1 Percentage",
-                    "&eLEFT CLICK &7+1 Percentage", "&eMIDDLE CLICK &7Remove Item").build());
+            inventory.addItem(new ItemBuilder(reward.getItem())
+                    .setLore("", "&7Percentage: &f" + reward.getChance() + " %", "", "&eSHIFT CLICK &7Set Percentage",
+                            "&eMIDDLE CLICK &7Remove Item").build());
         }
 
         player.openInventory(inventory);

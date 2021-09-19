@@ -30,7 +30,9 @@ public enum Message {
     EDIT_CRATE("messages.gui.edit"),
     OPENING("messages.gui.opening"),
     CRATE_DELETE("messages.crates.delete"),
-    ALREADY_OPENING("messages.crates.already-opening");
+    ALREADY_OPENING("messages.crates.already-opening"),
+    SET_PERCENTAGE("messages.crates.set-percentage"),
+    NOT_NUMBER("messages.crates.not-number");
 
     private final String path;
     private final ConfigFile file = CratePlugin.getPlugin().getFileManager().getFile("messages");
