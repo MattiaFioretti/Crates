@@ -18,7 +18,7 @@ messages:
       format: '&3&l» &f%crate_name%'
       hover: "&7&o (( Click here to receive the key ))"
     reload: '&b[Reload] &7The message config was &freloaded successfully.'
-    no-permission: "&c[Error] &7You don't have permission to run this command"
+    no-permission: "&c[Error] &7You don't have permission to run this command!"
     player-not-online: "&c[Error] &7This &fplayer &7is not online."
     syntax-error: "&c[Error] &7There is an error in one of the &fparameters &7entered."
   crates:
@@ -29,3 +29,5 @@ messages:
     already-exist: "&b[Crate] &7This &fcrate &7already exist"
     saved: "&b[Crate] &7You successfully saved &fthis crate"
     delete: "&b[Crate] &7You have successfully deleted this &fcrate"
+    not-number: "&c[Error] &7You must enter a valid number"
+    set-percentage: "&b[Crate] &7Enter a percentage for this item"
